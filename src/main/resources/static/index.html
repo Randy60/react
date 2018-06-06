@@ -57,10 +57,15 @@
 
         loadEmployeesFromServer: function () {
             var self = this;
+            console.log("Requesting data:");
             $.ajax({
+
                 url: "http://localhost:8082/api/employees"
             }).then(function (data) {
-                self.setState({employees: data._embedded.employees});
+const myObjStr = JSON.stringify(data);
+                console.log(myObjStr);
+
+                self.setState({employees: data});
             });
         },
 
@@ -74,6 +79,7 @@
 
         render() {
             return ( <EmployeeTable employees={this.state.employees}/> );
+            //return ( <EmployeeTable employees={EMPLOYEES}/> );
         }
     });
 
